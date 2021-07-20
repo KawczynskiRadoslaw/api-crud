@@ -48,11 +48,12 @@ const alphaOnly = (event => {
 function loadExcursions() {
     fetch(apiUrl)
         .then(resp => {
-            if(resp.ok) { return resp.json(); }
+            if (resp.ok) {return resp.json();}
             return Promise.reject(resp);
         })
         .then(data => {
-            insertExcursions( data );
+            insertExcursions(data);
+            console.table(data);
         })
         .catch(err => console.error(err));
 }
@@ -72,7 +73,7 @@ function insertExcursions(excursionsArr) {
             <button>edytuj</button>
         `;
 
-        ulEl.appendChild( liEl );
+        ulEl.appendChild(liEl);
     });
 }
 
@@ -80,14 +81,14 @@ function removeExcursions() {
     const ulEl = document.querySelector('.excursions');
     ulEl.addEventListener('click', e => {
         const targetEl = e.target;
-        if(targetEl.tagName === 'A') {
+        if (targetEl.tagName === 'A') {
             const parentEl = targetEl.parentElement;
             const id = parentEl.dataset.id;
-            const options = { method: 'DELETE' };
+            const options = {method: 'DELETE'};
             fetch(`${apiUrl}/${id}`, options)
                 .then(resp => console.log(resp))
                 .catch(err => console.error(err))
-                .finally( loadExcursions );
+                .finally(loadExcursions);
         }
     })
 }
@@ -105,7 +106,7 @@ function addExcursions() {
         const options = { 
             method: 'POST',
             body: JSON.stringify( data ),
-            headers: { 'Content-Type': 'application/json' } 
+            headers: {'Content-Type': 'application/json'} 
         };
         fetch(apiUrl, options)
             .then(resp => console.log(resp))
@@ -119,7 +120,7 @@ function updateExcursions() {
     ulEl.addEventListener('click', e => {
         const targetEl = e.target;
         console.log(targetEl)
-        if(targetEl.tagName === 'BUTTON') {
+        if (targetEl.tagName === 'BUTTON') {
             const parentEl = targetEl.parentElement;
             const spanList = 
                 parentEl.querySelectorAll('span');
@@ -127,7 +128,7 @@ function updateExcursions() {
                 span => span.isContentEditable
             );
 
-            if(isEditable) {
+            if (isEditable) {
                 // zapisz zmanę w API
                 const id = parentEl.dataset.id;
                 const data = {
@@ -137,7 +138,7 @@ function updateExcursions() {
                 const options = { 
                     method: 'PUT',
                     body: JSON.stringify( data ),
-                    headers: { 'Content-Type': 'application/json' } 
+                    headers: {'Content-Type': 'application/json'} 
                 };
                 fetch(`${apiUrl}/${id}`, options)
                     .then(resp => console.log(resp))

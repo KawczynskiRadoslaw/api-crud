@@ -16,9 +16,19 @@
       "id": 5
     },
     {
-      "name": "Łódź",
-      "price": "110",
-      "id": 7
+      "name": "Warszawa",
+      "price": "140",
+      "id": 8
+    },
+    {
+      "name": "Wrocław",
+      "price": "125",
+      "id": 9
+    },
+    {
+      "name": "Legnica",
+      "price": "115",
+      "id": 10
     }
   ]
 }

@@ -9,7 +9,41 @@ function init() {
     removeExcursions();
     addExcursions();
     updateExcursions();
+    numberOnly();
+    alphaOnly();
 }
+
+// input z name 'price': można wpisać tylko cyfry
+const inputPrice = document.querySelectorAll("input[name='price']");
+
+inputPrice.forEach(e => {
+	e.value = '';
+	e.setAttribute('autocomplete','off');
+	e.setAttribute('onkeydown','return numberOnly(event)');
+	e.setAttribute('maxlength','3');
+	console.log(e);
+});
+
+const numberOnly = (event => {
+	let key = event.keyCode;
+	return ((key >= 48 && key <= 57) || key == 8); // only 0-9 characters
+});
+
+// input z name 'name': można wpisać tylko litery
+const inputName = document.querySelectorAll("input[name='name']");
+
+inputName.forEach(e => {
+	e.value = '';
+	e.setAttribute('autocomplete','off');
+	e.setAttribute('onkeydown','return alphaOnly(event)');
+	e.setAttribute('maxlength','30');
+	console.log(e);
+});
+
+const alphaOnly = (event => {
+	let key = event.keyCode;
+	return ((key >= 65 && key <= 90) || key == 8); // only A-Z characters
+});
 
 function loadExcursions() {
     fetch(apiUrl)
@@ -34,7 +68,7 @@ function insertExcursions(excursionsArr) {
         liEl.innerHTML = `
             [<a href="#">usuń</a>]
             <span>${item.name}</span>: 
-            <span>${item.price}</span>PLN
+            <span>${item.price}</span> PLN
             <button>edytuj</button>
         `;
 

@@ -1,14 +1,24 @@
 {
-    "excursions": [
-        {
-            "id": 1,
-            "name": "Zwiedzanie Krakowa",
-            "price": 120
-        },
-        {
-            "id": 2,
-            "name": "Zwiedzanie Warszawy",
-            "price": 120
-        }
-    ]
+  "excursions": [
+    {
+      "name": "Poznań",
+      "price": "130",
+      "id": 3
+    },
+    {
+      "name": "Kraków",
+      "price": "120",
+      "id": 4
+    },
+    {
+      "name": "Gdańsk",
+      "price": "150",
+      "id": 5
+    },
+    {
+      "name": "Łódź",
+      "price": "110",
+      "id": 7
+    }
+  ]
 }
